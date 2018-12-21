@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <router-link v-bind:to="'/Explore-Vue'">Home</router-link>
-    <router-link v-bind:to="'/Explore-Vue/about'">About</router-link>
-    <br><br>
     <router-view></router-view>
   </div>
 </template>
@@ -14,12 +11,7 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  background-color: #0b6ad6;
 }
 </style>
