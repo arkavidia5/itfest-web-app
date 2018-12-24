@@ -4,10 +4,24 @@
     <br>
     <h2>Arkavidia 5.0</h2>
     <br>
-    <form action="/">
-      <input type="text" v-model="code" placeholder="Input your code..">
-      <button type="submit">Login</button>
-    </form>
+    <v-form ref="form" v-model="valid" lazy-validation>
+      <v-flex>
+        <v-text-field
+          v-model="code"
+          :rules="check"
+          label="Code"
+          placeholder="Input your code.."
+          solo
+          required
+        ></v-text-field>
+      </v-flex>
+      <v-btn
+        :disabled="!valid"
+        @click="submit"
+      >
+        Login
+      </v-btn>
+    </v-form>
   </div>
 </template>
 
@@ -17,14 +31,21 @@ export default {
   name: 'login',
   data () {
     return {
-      code: null
+      valid: true,
+      code: '',
+      check: [
+        v => !!v || 'Please input your code',
+        v => /^[a-zA-Z0-9- ,_]*$/.test(v) || 'Code must be valid'
+      ]
     }
   },
   methods: {
     submit () {
-      axios
-        .post('')
-        .then()
+      if (this.$refs.form.validate()) {
+        axios
+          .post('')
+          .then()
+      }
     }
   }
 }
@@ -33,6 +54,16 @@ export default {
 <style>
 h2 {
   color: white;
+}
+
+.v-messages__message {
+  color: white;
+  font-size: 12px;
+}
+
+.v-form {
+  width: 80%;
+  margin-left: 10%;
 }
 
 #login {
