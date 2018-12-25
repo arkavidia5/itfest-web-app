@@ -2,8 +2,11 @@
   <div id="home">
     <div id="head">
       <h2>Arkavidia 5.0</h2>
-      <router-link v-bind:to="'/'">Home</router-link>
-      <router-link v-bind:to="'/map'">Map</router-link>
+      <br>
+      <ul class="nav">
+        <li><router-link v-bind:to="'/'" id="link1"><b>Home</b></router-link></li>
+        <li><router-link v-bind:to="'/map'" id="link2">Map</router-link></li>
+      </ul>
     </div>
     <div id="content">
       <div id="points">
@@ -13,7 +16,7 @@
       </div>
       <hr>
       <div id="history">
-        Ini history
+        <h4>Transaction History</h4>
       </div>
     </div>
   </div>
@@ -26,8 +29,31 @@ export default {
 </script>
 
 <style>
+h1 {
+  color: #646464;
+}
+
 h2 {
   color: white;
+}
+
+h3 {
+  color: #a2b0bd;
+}
+
+h4 {
+  padding: 10px 0 10px 0;
+}
+
+a {
+  font-size: 13px;
+  color: white;
+  text-decoration: none;
+}
+
+#link1 {
+  border-bottom: 2.5px solid #fff;
+  padding-bottom: 3px;
 }
 
 #head, #content {
@@ -35,11 +61,38 @@ h2 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 #content {
   background-color: white;
 }
+
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nav li {
+  display: inline;
+  padding: 10%;
+}
+
+.nav a {
+  display: inline-block;
+  padding: 4px;
+}
+
+#points {
+  padding: 20px 0 20px 0;
+}
+
+#point {
+  color: #fdbc02;
+  font-size: 75px;
+  font-weight: bold;
+}
+
 </style>
