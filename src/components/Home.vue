@@ -51,11 +51,6 @@ a {
   text-decoration: none;
 }
 
-#link1 {
-  border-bottom: 2.5px solid #fff;
-  padding-bottom: 3px;
-}
-
 #head, #content {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
