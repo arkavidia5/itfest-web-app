@@ -23,7 +23,13 @@
         <br>
         <br>
         <div v-for="data in transaction" :key="data.name">
-          <span class="tpoint"><b>{{ data.points }} Point</b></span> <span class="tname"><b>{{ data.name }}</b></span>
+          <div v-if="data.points>0">
+            <span class="tpointg"><b>+{{ data.points }} Point</b></span>
+          </div>
+          <div v-else>
+            <span class="tpointr"><b>{{ data.points }} Point</b></span>
+          </div>
+          <span class="tname"><b>{{ data.name }}</b></span>
           <br>
           <br>
           <hr>
@@ -41,7 +47,7 @@ export default {
       point: 144,
       transaction: [
         { name: 'Bukalapak', points: 100 },
-        { name: 'Goodie Bag', points: 50 },
+        { name: 'Goodie Bag', points: -50 },
         { name: 'Agate', points: 75 }
       ]
     }
@@ -124,19 +130,27 @@ body {
   font-weight: bold;
 }
 
-.tpoint {
+.tpointg {
   float: left;
   margin-left: 5%;
   margin-top: 8px;
-  color: #369fb2;
   font-size: 16px;
+  color: #369fb2;
+}
+
+.tpointr {
+  float: left;
+  margin-left: 5%;
+  margin-top: 8px;
+  font-size: 16px;
+  color: #c8101a;
 }
 
 .tname {
   float: right;
   margin-top: 8px;
   margin-right: 5%;
-  color: #aaaaaa;
+  color: #999999;
   font-size: 16px;
 }
 

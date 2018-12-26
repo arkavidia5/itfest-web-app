@@ -5,8 +5,8 @@
         <v-card color="#0b6ad6">
           <v-card-text><h2>Arkavidia 5.0</h2></v-card-text>
           <ul class="nav">
-            <li><router-link v-bind:to="'/'" id="link1"><b>Home</b></router-link></li>
-            <li><router-link v-bind:to="'/map'" id="link2">Map</router-link></li>
+            <li><router-link v-bind:to="'/'" id="link1">Home</router-link></li>
+            <li><router-link v-bind:to="'/map'" id="link2"><b>Map</b></router-link></li>
           </ul>
         </v-card>
       </v-flex>
