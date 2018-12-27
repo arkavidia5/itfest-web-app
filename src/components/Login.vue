@@ -19,7 +19,6 @@
       <v-btn
         :disabled="!valid"
         @click="submit"
-        v-bind:to="'/'"
       >
         Login
       </v-btn>
@@ -28,13 +27,13 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   name: 'login',
   data () {
     return {
       valid: true,
-      code: '',
+      msg: null,
       check: [
         v => !!v || 'Please input your code',
         v => /^[a-zA-Z0-9- ,_]*$/.test(v) || 'Code must be valid'
@@ -44,16 +43,16 @@ export default {
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
-        //  axios
-        //  .post('')
-        //  .then()
-        this.$store.commit('changeid', this.$refs.formid.value)
-        this.$store.commit('changepoint', 151)
-        this.$store.commit('changetrans', [
-          { name: 'Bukalapak', points: 101 },
-          { name: 'Goodie Bag', points: -51 },
-          { name: 'Agate', points: 71 }
-        ])
+        axios
+          .get('http://54.179.163.148/test/user/' + this.$refs.formid.value)
+          .then(response => (this.msg = response))
+        //  this.$store.commit('changeid', this.$refs.formid.value)
+        //  this.$store.commit('changepoint', 151)
+        //  this.$store.commit('changetrans', [
+        //    { name: 'Bukalapak', points: 101 },
+        //    { name: 'Goodie Bag', points: -51 },
+        //    { name: 'Agate', points: 71 }
+        //  ])
       }
     }
   }
