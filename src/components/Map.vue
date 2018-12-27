@@ -11,21 +11,12 @@
         </v-card>
       </v-flex>
     </div>
-    <l-map ref="map" :zoom=13 :center="[47.413220, -1.219482]">
-      <l-tile-layer url="" ></l-tile-layer>
-    </l-map>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'map',
-  data: () => ({ maps: null }),
-  mounted () {
-    this.$nextTick(() => {
-      this.maps = this.$refs.map.mapObject
-    })
-  }
+  name: 'map'
 }
 </script>
 
@@ -40,7 +31,7 @@ a {
   text-decoration: none;
 }
 
-#head, #content {
+#head {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

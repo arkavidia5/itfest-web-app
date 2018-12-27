@@ -10,6 +10,7 @@
           v-model="code"
           :rules="check"
           label="Code"
+          ref="formid"
           placeholder="Input your code.."
           solo
           required
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'login',
   data () {
@@ -42,9 +43,10 @@ export default {
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
-        axios
-          .post('')
-          .then()
+        //  axios
+        //  .post('')
+        //  .then()
+        this.$store.commit('change', this.$refs.formid.value)
       }
     }
   }

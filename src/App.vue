@@ -5,15 +5,8 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
-
 export default {
-  name: 'app',
-  components: {
-    LMap,
-    LTileLayer,
-    LMarker
-  }
+  name: 'app'
 }
 </script>
 

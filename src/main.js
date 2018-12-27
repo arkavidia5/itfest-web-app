@@ -6,19 +6,10 @@ import VueRouter from 'vue-router'
 import Home from './components/Home'
 import Login from './components/Login'
 import Map from './components/Map'
-import { L } from 'vue2-leaflet'
-import 'leaflet/dist/leaflet.css'
+import { store } from './store/store'
 
 Vue.use(VueRouter)
 Vue.use(Vuetify)
-
-delete L.Icon.Default.prototype._getIconUrl
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
-})
 
 const routes = [
   { path: '/', component: Home },
@@ -33,6 +24,7 @@ const router = new VueRouter({
 
 new Vue({
   el: '#app',
+  store,
   template: '<App/>',
   components: { App },
   router
