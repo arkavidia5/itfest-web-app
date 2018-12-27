@@ -14,7 +14,7 @@
     <div id="content">
       <div id="points">
         <h1>Your Points</h1>
-        <div id="point">{{ point }}</div>
+        <div id="point">{{ $store.getters.point }}</div>
         <h3>Visit all cluster and get<br>additional point!</h3>
       </div>
       <hr>
@@ -22,7 +22,7 @@
         <h4>Transaction History</h4>
         <br>
         <br>
-        <div v-for="data in transaction" :key="data.name">
+        <div v-for="data in $store.getters.transaction" :key="data.name">
           <div v-if="data.points>0">
             <span class="tpointg"><b>+{{ data.points }} Point</b></span>
           </div>
@@ -41,17 +41,7 @@
 
 <script>
 export default {
-  name: 'home',
-  data () {
-    return {
-      point: 144,
-      transaction: [
-        { name: 'Bukalapak', points: 100 },
-        { name: 'Goodie Bag', points: -50 },
-        { name: 'Agate', points: 75 }
-      ]
-    }
-  }
+  name: 'home'
 }
 </script>
 

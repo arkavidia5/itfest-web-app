@@ -22,6 +22,15 @@ const router = new VueRouter({
   mode: 'history'
 })
 
+router.beforeEach((to, from, next) => {
+  if ((to.path === '/') || (to.path === '/map')) {
+    if (store.getters.id == null) {
+      next({ path: '/login' })
+    }
+  }
+  next()
+})
+
 new Vue({
   el: '#app',
   store,

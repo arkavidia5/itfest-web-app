@@ -19,6 +19,7 @@
       <v-btn
         :disabled="!valid"
         @click="submit"
+        v-bind:to="'/'"
       >
         Login
       </v-btn>
@@ -46,7 +47,13 @@ export default {
         //  axios
         //  .post('')
         //  .then()
-        this.$store.commit('change', this.$refs.formid.value)
+        this.$store.commit('changeid', this.$refs.formid.value)
+        this.$store.commit('changepoint', 151)
+        this.$store.commit('changetrans', [
+          { name: 'Bukalapak', points: 101 },
+          { name: 'Goodie Bag', points: -51 },
+          { name: 'Agate', points: 71 }
+        ])
       }
     }
   }
