@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="itfest-map">
     <div id="head">
       <v-flex>
         <v-card color="#0b6ad6">
@@ -11,16 +11,45 @@
         </v-card>
       </v-flex>
     </div>
+    <div id="mapid" v-bind:style="{ height: windowHeight + 'px' }"></div>
   </div>
 </template>
 
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+
 <script>
+import L from 'leaflet'
+
 export default {
-  name: 'map'
+  name: 'itfest-map',
+
+  data() {
+    return {
+      windowHeight: window.innerHeight
+    }
+  },
+
+  mounted () {
+    this.initMap()
+  },
+
+  methods: {
+    initMap () {
+      var mymap = L.map('mapid').setView([-6.8915, 107.6102], 16)
+      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 25,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoiYXVkcnlueW9uYXRhIiwiYSI6ImNqcTlnenBudjExdnozeHQ1bnIzN3czdmoifQ.6cGjJzKovHB68ExIIbcCng'
+      }).addTo(mymap)
+    }
+  }
 }
 </script>
 
 <style>
+#mapid { height: 200px; }
+
 h2 {
   color: white;
 }
