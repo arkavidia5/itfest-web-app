@@ -70,6 +70,7 @@ h4 {
   margin-top: 10px;
   margin-left: 5%;
   float: left;
+  font-size: 15px;
 }
 
 a {

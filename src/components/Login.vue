@@ -45,15 +45,16 @@ export default {
     submit () {
       if (this.$refs.form.validate()) {
         // axios
-        //  .get('http://54.179.163.148/test/user/' + this.$refs.formid.value)
+        //  .get('/')
         //  .then(response => (this.msg = response))
         this.$store.commit('changeid', this.$refs.formid.value)
-        this.$store.commit('changepoint', 151)
+        this.$store.commit('changepoint', 453)
         this.$store.commit('changetrans', [
           { name: 'Bukalapak', points: 101 },
           { name: 'Goodie Bag', points: -51 },
           { name: 'Agate', points: 71 }
         ])
+        // this.$refs.formid.value
       }
     }
   }
