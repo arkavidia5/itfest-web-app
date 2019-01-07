@@ -11,7 +11,7 @@
           :rules="check"
           label="Code"
           ref="formid"
-          placeholder="Input your code.."
+          placeholder="Input your id.."
           solo
           required
         ></v-text-field>
@@ -19,7 +19,6 @@
       <v-btn
         :disabled="!valid"
         @click="submit"
-        v-bind:to="'/'"
       >
         Login
       </v-btn>
@@ -28,13 +27,12 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   name: 'login',
   data () {
     return {
       valid: true,
-      msg: null,
       check: [
         v => !!v || 'Please input your code',
         v => /^[a-zA-Z0-9- ,_]*$/.test(v) || 'Code must be valid'
@@ -44,17 +42,21 @@ export default {
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
-        // axios
-        //  .get('/')
-        //  .then(response => (this.msg = response))
-        this.$store.commit('changeid', this.$refs.formid.value)
-        this.$store.commit('changepoint', 453)
-        this.$store.commit('changetrans', [
-          { name: 'Bukalapak', points: 101 },
-          { name: 'Goodie Bag', points: -51 },
-          { name: 'Agate', points: 71 }
-        ])
-        // this.$refs.formid.value
+        axios
+          // .post('http://54.179.163.148/test/user/login', {
+          // id: '6230857765'
+          // })
+          .get('http://54.179.163.148/test/user/' + this.$refs.formid.value)
+          .then(response => (
+            this.$store.commit('changeid', this.$refs.formid.value),
+            this.$store.commit('changepoint', response.data.point)
+          ))
+        axios
+          .get('http://54.179.163.148/test/transaction/user/' + this.$refs.formid.value)
+          .then(response => (
+            this.$store.commit('changetrans', response.data),
+            this.$router.push('/')
+          ))
       }
     }
   }
