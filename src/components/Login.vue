@@ -43,21 +43,21 @@ export default {
     submit () {
       if (this.$refs.form.validate()) {
         axios
-          // .post('http://54.179.163.148/test/user/login', {
-          // id: '6230857765'
-          // })
           .get('http://54.179.163.148/test/user/' + this.$refs.formid.value)
           .then(response => (
             this.$store.commit('changeid', this.$refs.formid.value),
-            this.$store.commit('changepoint', response.data.point)
-          ))
-        axios
-          .get('http://54.179.163.148/test/transaction/user/' + this.$refs.formid.value)
-          .then(response => (
-            this.$store.commit('changetrans', response.data),
-            this.$router.push('/')
+            this.$store.commit('changepoint', response.data.point),
+            this.getTransaction()
           ))
       }
+    },
+    getTransaction () {
+      axios
+        .get('http://54.179.163.148/test/transaction/user/' + this.$refs.formid.value)
+        .then(response => (
+          this.$store.commit('changetrans', response.data),
+          this.$router.push('/')
+        ))
     }
   }
 }
