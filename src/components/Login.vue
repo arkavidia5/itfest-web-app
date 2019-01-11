@@ -10,19 +10,21 @@
           v-model="code"
           :rules="check"
           label="Code"
-          ref="formid"
           placeholder="Input your id.."
           solo
           required
+          browser-autocomplete
         ></v-text-field>
       </v-flex>
       <v-btn
         :disabled="!valid"
         @click="submit"
       >
-        Login
+        Check points
       </v-btn>
     </v-form>
+    <br>
+    <a>{{ msg }}</a>
   </div>
 </template>
 
@@ -33,9 +35,10 @@ export default {
   data () {
     return {
       valid: true,
+      msg: null,
       check: [
-        v => !!v || 'Please input your code',
-        v => /^[a-zA-Z0-9- ,_]*$/.test(v) || 'Code must be valid'
+        v => !!v || 'Please input your id',
+        v => /^[a-zA-Z0-9- ,_]*$/.test(v) || 'Id must be valid'
       ]
     }
   },
@@ -43,21 +46,28 @@ export default {
     submit () {
       if (this.$refs.form.validate()) {
         axios
-          .get('http://54.179.163.148/test/user/' + this.$refs.formid.value)
+          .get('http://54.179.163.148/test/user/' + this.code)
           .then(response => (
-            this.$store.commit('changeid', this.$refs.formid.value),
+            this.$store.commit('changeid', this.code),
             this.$store.commit('changepoint', response.data.point),
-            this.getTransaction()
+            this.checkId(response)
           ))
       }
     },
     getTransaction () {
       axios
-        .get('http://54.179.163.148/test/transaction/user/' + this.$refs.formid.value)
+        .get('http://54.179.163.148/test/transaction/user/' + this.code)
         .then(response => (
           this.$store.commit('changetrans', response.data),
           this.$router.push('/')
         ))
+    },
+    checkId (resp) {
+      if (resp.data['id'] != null) {
+        this.getTransaction()
+      } else {
+        this.msg = "Id doesn't exist. Please try again!"
+      }
     }
   }
 }
@@ -65,6 +75,10 @@ export default {
 
 <style>
 h2 {
+  color: white;
+}
+
+a {
   color: white;
 }
 
