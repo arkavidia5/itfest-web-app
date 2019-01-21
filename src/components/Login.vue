@@ -46,7 +46,7 @@ export default {
     submit () {
       if (this.$refs.form.validate()) {
         axios
-          .get('http://54.179.163.148/test/user/' + this.code)
+          .get('https://itfest.arkavidia.id/api/user/' + this.code)
           .then(response => (
             this.$store.commit('changeid', this.code),
             this.$store.commit('changepoint', response.data.point),
@@ -56,7 +56,7 @@ export default {
     },
     getTransaction () {
       axios
-        .get('http://54.179.163.148/test/transaction/user/' + this.code)
+        .get('https://itfest.arkavidia.id/api/transaction/user/' + this.code)
         .then(response => (
           this.$store.commit('changetrans', response.data),
           this.$router.push('/')

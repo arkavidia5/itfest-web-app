@@ -24,10 +24,10 @@
         <br>
         <div v-for="data in $store.getters.transaction" :key="data.name">
           <div v-if="data.point>0">
-            <span class="tpointg"><b>+{{ data.point }} Point</b></span>
+            <span class="tpointg"><b>+{{ data.point }} Points</b></span>
           </div>
           <div v-else>
-            <span class="tpointr"><b>{{ data.point }} Point</b></span>
+            <span class="tpointr"><b>-{{ data.total_price }} Points</b></span>
           </div>
           <span class="tname"><b>{{ data.tenant }}</b></span>
           <br>
