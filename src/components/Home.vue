@@ -79,10 +79,6 @@ a {
   text-decoration: none;
 }
 
-body {
-  background-color: white;
-}
-
 #head {
   background-color: #0b6ad6;
 }

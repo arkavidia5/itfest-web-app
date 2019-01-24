@@ -96,6 +96,11 @@ a {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
+  background-color: #0b6ad6;
   margin-top: 60px;
+}
+
+html {
+  background-color: #0b6ad6;
 }
 </style>
