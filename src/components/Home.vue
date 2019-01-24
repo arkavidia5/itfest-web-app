@@ -35,13 +35,21 @@
           <hr>
         </div>
       </div>
+      <br>
+      <v-btn class="white--text" color="#c80000" @click="deleteCookie"><b>Log out</b></v-btn>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home'
+  name: 'home',
+  methods: {
+    deleteCookie () {
+      this.$cookie.delete('user_id')
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 
@@ -81,6 +89,10 @@ a {
 
 #head {
   background-color: #0b6ad6;
+}
+
+html, body {
+  background-color: white;
 }
 
 #head, #content {

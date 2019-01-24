@@ -13,7 +13,6 @@
           placeholder="Input your id.."
           solo
           required
-          browser-autocomplete
         ></v-text-field>
       </v-flex>
       <v-btn
@@ -59,6 +58,7 @@ export default {
         .get('https://itfest.arkavidia.id/api/transaction/user/' + this.code)
         .then(response => (
           this.$store.commit('changetrans', response.data),
+          this.$cookie.set('user_id', this.code, 1),
           this.$router.push('/')
         ))
     },
@@ -100,7 +100,7 @@ a {
   margin-top: 60px;
 }
 
-html {
+html, body {
   background-color: #0b6ad6;
 }
 </style>
