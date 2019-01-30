@@ -1,16 +1,5 @@
 <template>
   <div id="itfest-map">
-    <div id="head">
-      <v-flex>
-        <v-card color="#0b6ad6">
-          <v-card-text><h2>Arkavidia 5.0</h2></v-card-text>
-          <ul class="nav">
-            <li><router-link v-bind:to="'/'" id="link1">Home</router-link></li>
-            <li><router-link v-bind:to="'/map'" id="link2"><b>Map</b></router-link></li>
-          </ul>
-        </v-card>
-      </v-flex>
-    </div>
     <div id="mapid" v-bind:style="{ height: windowHeight + 'px' }"></div>
   </div>
 </template>

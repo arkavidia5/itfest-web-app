@@ -11,7 +11,14 @@ import Map from './components/Map'
 import { store } from './store/store'
 
 Vue.use(VueRouter)
-Vue.use(Vuetify)
+
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#04464F',
+    secondary: '#FFFFF2',
+    accent: '#F69320'
+  }
+})
 Vue.use(VueCookie)
 
 const routes = [
@@ -21,8 +28,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes,
-  mode: 'history'
+  routes
 })
 
 function getCookie (cname) {
@@ -43,9 +49,10 @@ function getCookie (cname) {
 function submit (userId) {
   axios
     .get('https://itfest.arkavidia.id/api/user/' + userId)
-    .then(response => (
-      store.commit('changepoint', response.data.point), getTransaction(userId)
-    ))
+    .then(response => {
+      store.commit('changepoint', response.data.point)
+      getTransaction(userId)
+    })
 }
 
 function getTransaction (userId) {
@@ -56,19 +63,22 @@ function getTransaction (userId) {
 
 router.beforeEach((to, from, next) => {
   if ((to.path === '/') || (to.path === '/map')) {
-    if (document.cookie[0] == null) {
+    if (getCookie('user_id') === '') {
       next({ path: '/login' })
     } else {
       submit(getCookie('user_id'))
     }
   } else if (to.path === '/login') {
-    if (document.cookie[0] != null) {
+    if (getCookie('user_id') !== '') {
       submit(getCookie('user_id'))
       next({ path: '/' })
     }
   }
   next()
 })
+window.setInterval(() => {
+  submit(getCookie('user_id'))
+}, 5000)
 
 new Vue({
   el: '#app',

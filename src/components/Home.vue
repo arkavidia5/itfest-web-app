@@ -1,53 +1,130 @@
 <template>
   <div id="home">
-    <div id="head">
+     <v-toolbar dark color="primary" v-if="this.$route.path != '/login'">
+        <v-spacer></v-spacer>
+          <v-toolbar-title class="white--text futura-bt">
+            <v-layout class="row">
+            <img src="https://static.arkavidia.id/5/images/logo.svg" alt="logo" height="30">
+            <div class="ml-2">ARKAVIDIA 5.0</div>
+            </v-layout>
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-menu offset-y>
+            <v-btn
+              slot="activator"
+              icon
+            >
+              <v-icon>more_vert</v-icon>
+            </v-btn>
+            <v-list>
+              <v-list-tile
+                @click="deleteCookie"
+              >
+                <v-list-tile-title>Log Out</v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
+
+        </v-toolbar>
       <v-flex>
-        <v-card color="#0b6ad6">
-          <v-card-text><h2>Arkavidia 5.0</h2></v-card-text>
-          <ul class="nav">
-            <li><router-link v-bind:to="'/'" id="link1"><b>Home</b></router-link></li>
-            <li><router-link v-bind:to="'/map'" id="link2">Map</router-link></li>
-          </ul>
-        </v-card>
+        <v-tabs
+          v-model="active"
+          color="primary"
+          dark
+          slider-color="accent"
+          centered
+          fixed-tabs
+        >
+          <v-tab ripple>
+            Points
+          </v-tab>
+          <v-tab ripple>
+            Maps
+          </v-tab>
+          <v-tab-item
+            key="0"
+          >
+          </v-tab-item>
+          <v-tab-item key="1">
+          </v-tab-item>
+        </v-tabs>
       </v-flex>
-    </div>
-    <div id="content">
-      <div id="points">
-        <h1>Your Points</h1>
-        <div id="point">{{ $store.getters.point }}</div>
-        <h3>Visit all cluster and get<br>additional point!</h3>
-      </div>
-      <hr>
-      <div id="history">
-        <h4>Transaction History</h4>
+       <div id="content" v-if="active==0">
+        <div id="points">
+          <h1>Your Points</h1>
+          <div id="point">{{ $store.getters.point }}</div>
+          <h3>Visit all cluster and get<br>additional point!</h3>
+        </div>
+        <barcode :value="$cookie.get('user_id')" format="code128"></barcode>
+        <hr>
+        <div id="history">
+        <h1 class="primary--text">History</h1>
+        <v-layout class="row">
+          <v-flex class="md8 offset-md2 xs12">
+          <v-data-table
+            v-if="$store.getters.transaction"
+            :headers="headers"
+            :items="$store.getters.transaction"
+          >
+            <template slot="items" slot-scope="props">
+              <td align="center">{{ props.item.tenant }}</td>
+              <td align="center" v-if="props.item.total_price > 0" class="tpointr">-{{props.item.total_price}}</td>
+              <td align="center" v-else class="tpointg">+{{props.item.point}}</td>
+              <td align="center">{{formatTime(props.item.created_at)}}</td>
+              <!-- <td><span class="tpointr"><b>-{{ prop.item.total_price }} Points</b></span>{{props.item.point}}</td> -->
+              <!-- <td class="text-xs-right">{{ props.item.total_price}}</td> -->
+            </template>
+          </v-data-table>
+          </v-flex>
+        </v-layout>
         <br>
-        <br>
-        <div v-for="data in $store.getters.transaction" :key="data.name">
-          <div v-if="data.point>0">
-            <span class="tpointg"><b>+{{ data.point }} Points</b></span>
-          </div>
-          <div v-else>
-            <span class="tpointr"><b>-{{ data.total_price }} Points</b></span>
-          </div>
-          <span class="tname"><b>{{ data.tenant }}</b></span>
-          <br>
-          <br>
-          <hr>
         </div>
       </div>
-      <br>
-      <v-btn class="white--text" color="#c80000" @click="deleteCookie"><b>Log out</b></v-btn>
+      <Map v-if="active == 1"></Map>
     </div>
-  </div>
+
 </template>
 
 <script>
+import Map from './Map'
+import VueBarcode from 'vue-barcode'
+
 export default {
   name: 'home',
+  components: {
+    Map,
+    'barcode': VueBarcode
+  },
+  data: () => ({
+    active: 0,
+    headers: [
+      {
+        text: 'Transaction History',
+        value: 'history',
+        sortable: false,
+        align: 'center'
+      },
+      {
+        text: 'Points',
+        value: 'points',
+        sortable: false,
+        align: 'center'
+      },
+      {
+        text: 'Time',
+        value: 'time',
+        sortable: false,
+        align: 'center'
+      }
+    ]
+  }),
   methods: {
     deleteCookie () {
       this.$cookie.delete('user_id')
       this.$router.push('/login')
+    },
+    formatTime (time) {
+      return new Date(time).toLocaleString()
     }
   }
 }
@@ -130,18 +207,12 @@ html, body {
 }
 
 .tpointg {
-  float: left;
-  margin-left: 5%;
-  margin-top: 8px;
-  font-size: 16px;
+
   color: #369fb2;
 }
 
 .tpointr {
-  float: left;
-  margin-left: 5%;
-  margin-top: 8px;
-  font-size: 16px;
+
   color: #c8101a;
 }
 
@@ -151,6 +222,9 @@ html, body {
   margin-right: 5%;
   color: #999999;
   font-size: 16px;
+}
+svg>rect {
+  fill: none !important;
 }
 
 </style>
