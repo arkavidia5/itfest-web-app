@@ -80,7 +80,28 @@ export default {
         'width': 21,
         'height': 25,
         'color': "green",
-      }).bindPopup("EXPO 1. Lapangan Cinta ITB")
+      }).bindPopup("Lapangan Cinta ITB")
+
+      var lapcin_left_group = this.insertRect({'map': mymap,'start_point': [-6.891487-2*meter, 107.610505+2*meter],'width': 7,'height': 22,'color': "yellow"})
+      var lapcin_right_group = this.insertRect({'map': mymap,'start_point': [-6.891487-2*meter, 107.610505+12*meter],'width': 7,'height': 22,'color': "yellow"})
+
+      var lapcin_15 = this.insertRect({'map': mymap,'start_point': [-6.891487-5*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "15"}).bindPopup("Shopee")
+      var lapcin_16 = this.insertRect({'map': mymap,'start_point': [-6.891487-7*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "16"}).bindPopup("Xtremax")
+      var lapcin_17 = this.insertRect({'map': mymap,'start_point': [-6.891487-9*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "17"}).bindPopup("Sirclo")
+      var lapcin_18 = this.insertRect({'map': mymap,'start_point': [-6.891487-11*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "18"}).bindPopup("Chatbiz")
+      var lapcin_19 = this.insertRect({'map': mymap,'start_point': [-6.891487-13*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "19"}).bindPopup("Futsaloka")
+      var lapcin_20 = this.insertRect({'map': mymap,'start_point': [-6.891487-15*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "20"}).bindPopup("HijUp")
+      var lapcin_21 = this.insertRect({'map': mymap,'start_point': [-6.891487-17*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "21"}).bindPopup("Kadoqu")
+      var lapcin_22 = this.insertRect({'map': mymap,'start_point': [-6.891487-19*meter, 107.610505+3*meter],'width': 3,'height': 3,'color': "grey",'divIcon': "22"}).bindPopup("GO-JEK")
+
+      var lapcin_23 = this.insertRect({'map': mymap,'start_point': [-6.891487-5*meter, 107.610505+14*meter],'width': 3,'height': 3,'color': "grey",'divIcon': "23"}).bindPopup("Tokopedia")
+      var lapcin_24 = this.insertRect({'map': mymap,'start_point': [-6.891487-8*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "24"}).bindPopup("GDP Labs")
+      var lapcin_25 = this.insertRect({'map': mymap,'start_point': [-6.891487-10*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "25"}).bindPopup("E-Health")
+      var lapcin_26 = this.insertRect({'map': mymap,'start_point': [-6.891487-12*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "26"}).bindPopup("Kakilima")
+      var lapcin_27 = this.insertRect({'map': mymap,'start_point': [-6.891487-14*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "27"}).bindPopup("IdCloudHost")
+      var lapcin_28 = this.insertRect({'map': mymap,'start_point': [-6.891487-16*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "28"}).bindPopup("Matagi Informasi Pertiwi")
+      var lapcin_29 = this.insertRect({'map': mymap,'start_point': [-6.891487-18*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "29"}).bindPopup("Warung Pintar")
+      var lapcin_30 = this.insertRect({'map': mymap,'start_point': [-6.891487-20*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "30"}).bindPopup("Bukalapak")
 
       var lapbas = this.insertRect({
         'map': mymap,
@@ -88,35 +109,31 @@ export default {
         'width': 22,
         'height': 28,
         'color': "green",
-        'divIcon': "EXPO 2"
-      }).bindPopup("EXPO 2. Lapangan Basket ITB")
+      }).bindPopup("Lapangan Voli ITB")
 
-      var lapcin_sl_1 = this.insertRect({'map': mymap,'start_point': [-6.891487-1*meter, 107.610505+5*meter],'width': 4,'height': 2,'color': "grey",'divIcon': "SL"}).bindPopup("Stand Lomba")
-      var lapcin_ss_1 = this.insertRect({'map': mymap,'start_point': [-6.891487-1*meter, 107.610505+9*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "SS"}).bindPopup("Sponsor Silver")
-      var lapcin_1 = this.insertRect({'map': mymap,'start_point':[-6.891487-1*meter, 107.610505+11*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "1"}).bindPopup("Stand 1")
-      var lapcin_2 = this.insertRect({'map': mymap,'start_point':[-6.891487-1*meter, 107.610505+13*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "2"}).bindPopup("Stand 2")
-      var lapcin_3 = this.insertRect({'map': mymap,'start_point':[-6.891487-6*meter, 107.610505+11*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "3"}).bindPopup("Stand 3")
-      var lapcin_4 = this.insertRect({'map': mymap,'start_point':[-6.891487-8*meter, 107.610505+11*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "4"}).bindPopup("Stand 4")
-      var lapcin_5 = this.insertRect({'map': mymap,'start_point':[-6.891487-10*meter, 107.610505+11*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "5"}).bindPopup("Stand 5")
-      var lapcin_6 = this.insertRect({'map': mymap,'start_point':[-6.891487-12*meter, 107.610505+11*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "6"}).bindPopup("Stand 6")
-      var lapcin_7 = this.insertRect({'map': mymap,'start_point':[-6.891487-14*meter, 107.610505+11*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "7"}).bindPopup("Stand 7")
-      var lapcin_8 = this.insertRect({'map': mymap,'start_point':[-6.891487-16*meter, 107.610505+11*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "8"}).bindPopup("Stand 8")
-      var lapcin_9 = this.insertRect({'map': mymap,'start_point':[-6.891487-6*meter, 107.610505+19*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "9"}).bindPopup("Stand 9")
-      var lapcin_10 = this.insertRect({'map': mymap,'start_point':[-6.891487-8*meter, 107.610505+19*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "10"}).bindPopup("Stand 10")
-      var lapcin_11 = this.insertRect({'map': mymap,'start_point':[-6.891487-10*meter, 107.610505+19*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "11"}).bindPopup("Stand 11")
-      var lapcin_12 = this.insertRect({'map': mymap,'start_point':[-6.891487-12*meter, 107.610505+19*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "12"}).bindPopup("Stand 12")
-      var lapcin_13 = this.insertRect({'map': mymap,'start_point':[-6.891487-14*meter, 107.610505+19*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "13"}).bindPopup("Stand 13")
-      var lapcin_14 = this.insertRect({'map': mymap,'start_point':[-6.891487-16*meter, 107.610505+19*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "14"}).bindPopup("Stand 14")
-      var lapcin_15 = this.insertRect({'map': mymap,'start_point':[-6.891487-22*meter, 107.610505+11*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "15"}).bindPopup("Stand 15")
-      var lapcin_16 = this.insertRect({'map': mymap,'start_point':[-6.891487-22*meter, 107.610505+13*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "16"}).bindPopup("Stand 16")
-      var lapcin_sg_1 = this.insertRect({'map': mymap,'start_point': [-6.891487-22*meter, 107.610505+9*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "SG"}).bindPopup("Sponsor Gold")
-      var lapcin_sl_2 = this.insertRect({'map': mymap,'start_point': [-6.891487-22*meter, 107.610505+5*meter],'width': 4,'height': 2,'color': "grey",'divIcon': "SL"}).bindPopup("Stand Lomba")
+      var lapbas_lu = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975],'width': 9,'height': 8,'color': "blue"})
+      var lapbas_ru = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+13*meter],'width': 9,'height': 8,'color': "blue"})
+      var lapbas_1 = this.insertRect({'map': mymap,'start_point': [-6.8915259-4*meter, 107.609975],'width': 2,'height': 2,'color': "red",'divIcon': "1"}).bindPopup("Cicil")
+      var lapbas_2 = this.insertRect({'map': mymap,'start_point': [-6.8915259-2*meter, 107.609975],'width': 2,'height': 2,'color': "red",'divIcon': "2"}).bindPopup("Jojonomics")
+      var lapbas_3 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+2*meter],'width': 2,'height': 2,'color': "red",'divIcon': "3"}).bindPopup("Danacita")
+      var lapbas_4 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+4*meter],'width': 2,'height': 2,'color': "red",'divIcon': "4"}).bindPopup("Halofina")
+      var lapbas_5 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+6*meter],'width': 2,'height': 2,'color': "red",'divIcon': "5"}).bindPopup("Amartha")
 
-      var lapcin_sp_1 = this.insertRect({'map': mymap,'start_point': [-6.891487-6*meter, 107.610505+9*meter],'width': 2,'height': 4,'color': "grey",'divIcon': "SP"}).bindPopup("Sponsor Platinum")
-      var lapcin_w_1 = this.insertRect({'map': mymap,'start_point': [-6.891487-10*meter, 107.610505+8*meter],'width': 3,'height': 5,'color': "grey",'divIcon': "W"}).bindPopup("Wahana")
-      var lapcin_a_1 = this.insertRect({'map': mymap,'start_point': [-6.891487-15*meter, 107.610505+9*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "A"}).bindPopup("Stand Arkavidia & Panggung")
-      var lapcin_a_2 = this.insertRect({'map': mymap,'start_point': [-6.891487-17*meter, 107.610505+9*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "A"}).bindPopup("Stand Arkavidia & Panggung")
+      var lapbas_6 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+14*meter],'width': 2,'height': 2,'color': "red",'divIcon': "6"}).bindPopup("Proofn")
+      var lapbas_7 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+16*meter],'width': 2,'height': 2,'color': "red",'divIcon': "7"}).bindPopup("Aimsis")
+      var lapbas_8 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+18*meter],'width': 2,'height': 2,'color': "red",'divIcon': "8"}).bindPopup("Squline")
+      var lapbas_9 = this.insertRect({'map': mymap,'start_point': [-6.8915259-2*meter, 107.609975+20*meter],'width': 2,'height': 2,'color': "red",'divIcon': "9"}).bindPopup("Noompang")
+      var lapbas_10 = this.insertRect({'map': mymap,'start_point': [-6.8915259-4*meter, 107.609975+20*meter],'width': 2,'height': 2,'color': "red",'divIcon': "10"}).bindPopup("Paragon")
 
+      var lapbas_11 = this.insertRect({'map': mymap,'start_point': [-6.8915259-26*meter, 107.609975+0*meter],'width': 5,'height': 2,'color': "red",'divIcon': "11"}).bindPopup("Agate")
+      var lapbas_12 = this.insertRect({'map': mymap,'start_point': [-6.8915259-26*meter, 107.609975+5*meter],'width': 4,'height': 2,'color': "red",'divIcon': "12"}).bindPopup("Dicoding")
+      var lapbas_13 = this.insertRect({'map': mymap,'start_point': [-6.8915259-27*meter, 107.609975+12*meter],'width': 2,'height': 1,'color': "red",'divIcon': "13"}).bindPopup("Emago")
+      var lapbas_14 = this.insertRect({'map': mymap,'start_point': [-6.8915259-27*meter, 107.609975+14*meter],'width': 2,'height': 1,'color': "red",'divIcon': "14"}).bindPopup("Inkubator IT")
+
+      var lapbas_regis = this.insertRect({'map': mymap,'start_point': [-6.8915259-26*meter, 107.609975+20*meter],'width': 2,'height': 2,'color': "orange",'divIcon': "A"}).bindPopup("Inkubator IT")
+      var lapbas_panggung = this.insertRect({'map': mymap,'start_point': [-6.8915259-13*meter, 107.609975],'width': 3,'height': 8,'color': "white",'divIcon': "B"}).bindPopup("Inkubator IT")
+      var lapbas_stand = this.insertRect({'map': mymap,'start_point': [-6.8915259-15*meter, 107.609975+8*meter],'width': 6,'height': 3,'color': "white",'divIcon': "C"}).bindPopup("Inkubator IT")
+      var lapbas_photobox = this.insertRect({'map': mymap,'start_point': [-6.8915259-15*meter, 107.609975+19*meter],'width': 3,'height': 3,'color': "white",'divIcon': "D"}).bindPopup("Inkubator IT")
     }
   }
 }
