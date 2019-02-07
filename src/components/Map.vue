@@ -32,7 +32,7 @@ export default {
     insertRect(params) {
       var meter = 0.000014
       var end_point = [params.start_point[0] - params.height*meter, params.start_point[1] + params.width*meter]
-      var rect = L.rectangle([params.start_point, end_point], {color: params.color, weight: 1}).addTo(params.map)
+      var rect = L.rectangle([params.start_point, end_point], {color: params.color, fillColor: params.fillColor, fillOpacity: params.fillOpacity, weight: params.weight}).addTo(params.map)
       var divIcon = L.divIcon({className: 'my-div-icon', html:params.divIcon})
       if(params.divIcon){
         L.marker(rect.getBounds().getCenter(), {icon: divIcon}).addTo(params.map)
@@ -52,7 +52,27 @@ export default {
         accessToken: 'pk.eyJ1IjoiYXVkcnlueW9uYXRhIiwiYSI6ImNqcTlnenBudjExdnozeHQ1bnIzN3czdmoifQ.6cGjJzKovHB68ExIIbcCng'
       }).addTo(mymap)
 
-      var marker = L.marker(itb_center).addTo(mymap)
+      var legend = L.control({position: 'topright'})
+
+      legend.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legend'),
+        grades = ['A. Registrasi', 'B. Panggung', 'C. Stand Arkav', 'D. Photo Box', '',
+        '1. Cicil', '2. Jojonomics', '3. Danacita', '4. Halofina', '5. Amartha', '6. Proofn', '7. Aimsis', '8. Squiline', '9. Noompang', '10. Paragon', '11. Agate', '12. Dicoding', '13. Emago', '14. Inkubator IT',
+        '15. Shopee', '16. Xtremax', '17. Sirclo', '18. Chatbiz', '19. Futsaloka', '20. HijUp', '21. Kadoqu', '22. GO-JEK',
+        '23. Tokopedia', '24. GDP Labs', '25. E-Health', '26. Kakilima', '27. IdCloudHost', '28. Matagi', '    Informasi', '    Pertiwi', '29. Warung Pintar', '30. Bukalapak'],
+        labels = []
+
+        for (var i = 0; i < grades.length; i++) {
+          if (i == 33 || i == 34) {
+            div.innerHTML += '<h6>' + grades[i] + '</h6>' + '<br>';
+          } else {
+            div.innerHTML += '<h5>' + grades[i] + '</h5>' + '<br>';
+          }
+        }
+        return div
+      }
+
+      legend.addTo(mymap)
 
       var customControl = L.Control.extend({
         options: {
@@ -79,61 +99,65 @@ export default {
         'start_point': [-6.891487, 107.610505],
         'width': 21,
         'height': 25,
-        'color': "green",
+        'fillColor': "green",
+        'fillOpacity': "0.1"
       }).bindPopup("Lapangan Cinta ITB")
 
-      var lapcin_left_group = this.insertRect({'map': mymap,'start_point': [-6.891487-2*meter, 107.610505+2*meter],'width': 7,'height': 22,'color': "yellow"})
-      var lapcin_right_group = this.insertRect({'map': mymap,'start_point': [-6.891487-2*meter, 107.610505+12*meter],'width': 7,'height': 22,'color': "yellow"})
+      var lapcin_left_group = this.insertRect({'map': mymap,'start_point': [-6.891487-2*meter, 107.610505+2*meter],'width': 7,'height': 22,'color': "#f8d700", 'fillColor': "white",'weight': 5,'fillOpacity': 0.8})
+      var lapcin_right_group = this.insertRect({'map': mymap,'start_point': [-6.891487-2*meter, 107.610505+12*meter],'width': 7,'height': 22,'color': "#f8d700",'fillColor': "white",'weight': 5,'fillOpacity': 0.8})
 
-      var lapcin_15 = this.insertRect({'map': mymap,'start_point': [-6.891487-5*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "15"}).bindPopup("Shopee")
-      var lapcin_16 = this.insertRect({'map': mymap,'start_point': [-6.891487-7*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "16"}).bindPopup("Xtremax")
-      var lapcin_17 = this.insertRect({'map': mymap,'start_point': [-6.891487-9*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "17"}).bindPopup("Sirclo")
-      var lapcin_18 = this.insertRect({'map': mymap,'start_point': [-6.891487-11*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "18"}).bindPopup("Chatbiz")
-      var lapcin_19 = this.insertRect({'map': mymap,'start_point': [-6.891487-13*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "19"}).bindPopup("Futsaloka")
-      var lapcin_20 = this.insertRect({'map': mymap,'start_point': [-6.891487-15*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "20"}).bindPopup("HijUp")
-      var lapcin_21 = this.insertRect({'map': mymap,'start_point': [-6.891487-17*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "21"}).bindPopup("Kadoqu")
-      var lapcin_22 = this.insertRect({'map': mymap,'start_point': [-6.891487-19*meter, 107.610505+3*meter],'width': 3,'height': 3,'color': "grey",'divIcon': "22"}).bindPopup("GO-JEK")
+      var lapcin_15 = this.insertRect({'map': mymap,'start_point': [-6.891487-5*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "black",'divIcon': "15",'weight': 1,'fillColor': "#00b922"}).bindPopup("Shopee")
+      var lapcin_16 = this.insertRect({'map': mymap,'start_point': [-6.891487-7*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "black",'divIcon': "16",'weight': 1,'fillColor': "#00b922"}).bindPopup("Xtremax")
+      var lapcin_17 = this.insertRect({'map': mymap,'start_point': [-6.891487-9*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "black",'divIcon': "17",'weight': 1,'fillColor': "#00b922"}).bindPopup("Sirclo")
+      var lapcin_18 = this.insertRect({'map': mymap,'start_point': [-6.891487-11*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "black",'divIcon': "18",'weight': 1,'fillColor': "#00b922"}).bindPopup("Chatbiz")
+      var lapcin_19 = this.insertRect({'map': mymap,'start_point': [-6.891487-13*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "black",'divIcon': "19",'weight': 1,'fillColor': "#00b922"}).bindPopup("Futsaloka")
+      var lapcin_20 = this.insertRect({'map': mymap,'start_point': [-6.891487-15*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "black",'divIcon': "20",'weight': 1,'fillColor': "#00b922"}).bindPopup("HijUp")
+      var lapcin_21 = this.insertRect({'map': mymap,'start_point': [-6.891487-17*meter, 107.610505+3*meter],'width': 2,'height': 2,'color': "black",'divIcon': "21",'weight': 1,'fillColor': "#00b922"}).bindPopup("Kadoqu")
+      var lapcin_22 = this.insertRect({'map': mymap,'start_point': [-6.891487-19*meter, 107.610505+3*meter],'width': 3,'height': 3,'color': "black",'divIcon': "22",'weight': 1,'fillColor': "#00b922"}).bindPopup("GO-JEK")
 
-      var lapcin_23 = this.insertRect({'map': mymap,'start_point': [-6.891487-5*meter, 107.610505+14*meter],'width': 3,'height': 3,'color': "grey",'divIcon': "23"}).bindPopup("Tokopedia")
-      var lapcin_24 = this.insertRect({'map': mymap,'start_point': [-6.891487-8*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "24"}).bindPopup("GDP Labs")
-      var lapcin_25 = this.insertRect({'map': mymap,'start_point': [-6.891487-10*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "25"}).bindPopup("E-Health")
-      var lapcin_26 = this.insertRect({'map': mymap,'start_point': [-6.891487-12*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "26"}).bindPopup("Kakilima")
-      var lapcin_27 = this.insertRect({'map': mymap,'start_point': [-6.891487-14*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "27"}).bindPopup("IdCloudHost")
-      var lapcin_28 = this.insertRect({'map': mymap,'start_point': [-6.891487-16*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "28"}).bindPopup("Matagi Informasi Pertiwi")
-      var lapcin_29 = this.insertRect({'map': mymap,'start_point': [-6.891487-18*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "29"}).bindPopup("Warung Pintar")
-      var lapcin_30 = this.insertRect({'map': mymap,'start_point': [-6.891487-20*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "grey",'divIcon': "30"}).bindPopup("Bukalapak")
+      var lapcin_23 = this.insertRect({'map': mymap,'start_point': [-6.891487-5*meter, 107.610505+14*meter],'width': 3,'height': 3,'color': "black",'divIcon': "23",'weight': 1,'fillColor': "#00b922"}).bindPopup("Tokopedia")
+      var lapcin_24 = this.insertRect({'map': mymap,'start_point': [-6.891487-8*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "black",'divIcon': "24",'weight': 1,'fillColor': "#00b922"}).bindPopup("GDP Labs")
+      var lapcin_25 = this.insertRect({'map': mymap,'start_point': [-6.891487-10*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "black",'divIcon': "25",'weight': 1,'fillColor': "#00b922"}).bindPopup("E-Health")
+      var lapcin_26 = this.insertRect({'map': mymap,'start_point': [-6.891487-12*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "black",'divIcon': "26",'weight': 1,'fillColor': "#00b922"}).bindPopup("Kakilima")
+      var lapcin_27 = this.insertRect({'map': mymap,'start_point': [-6.891487-14*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "black",'divIcon': "27",'weight': 1,'fillColor': "#00b922"}).bindPopup("IdCloudHost")
+      var lapcin_28 = this.insertRect({'map': mymap,'start_point': [-6.891487-16*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "black",'divIcon': "28",'weight': 1,'fillColor': "#00b922"}).bindPopup("Matagi Informasi Pertiwi")
+      var lapcin_29 = this.insertRect({'map': mymap,'start_point': [-6.891487-18*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "black",'divIcon': "29",'weight': 1,'fillColor': "#00b922"}).bindPopup("Warung Pintar")
+      var lapcin_30 = this.insertRect({'map': mymap,'start_point': [-6.891487-20*meter, 107.610505+14*meter],'width': 2,'height': 2,'color': "black",'divIcon': "30",'weight': 1,'fillColor': "#00b922"}).bindPopup("Bukalapak")
 
       var lapbas = this.insertRect({
         'map': mymap,
-        'start_point': [-6.8915259, 107.609975],
-        'width': 22,
-        'height': 28,
-        'color': "green",
+        'start_point': [-6.8915240, 107.609970],
+        'width': 22.7,
+        'height': 28.3,
+        'color': "#f8d700",
+        'fillColor': "white",
+        'weight': 5,
+        'fillOpacity': 0.8
       }).bindPopup("Lapangan Voli ITB")
 
-      var lapbas_lu = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975],'width': 9,'height': 8,'color': "blue"})
-      var lapbas_ru = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+13*meter],'width': 9,'height': 8,'color': "blue"})
-      var lapbas_1 = this.insertRect({'map': mymap,'start_point': [-6.8915259-4*meter, 107.609975],'width': 2,'height': 2,'color': "red",'divIcon': "1"}).bindPopup("Cicil")
-      var lapbas_2 = this.insertRect({'map': mymap,'start_point': [-6.8915259-2*meter, 107.609975],'width': 2,'height': 2,'color': "red",'divIcon': "2"}).bindPopup("Jojonomics")
-      var lapbas_3 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+2*meter],'width': 2,'height': 2,'color': "red",'divIcon': "3"}).bindPopup("Danacita")
-      var lapbas_4 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+4*meter],'width': 2,'height': 2,'color': "red",'divIcon': "4"}).bindPopup("Halofina")
-      var lapbas_5 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+6*meter],'width': 2,'height': 2,'color': "red",'divIcon': "5"}).bindPopup("Amartha")
+      var lapbas_lu = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975],'width': 9,'height': 8,'color': "black", 'fillColor': "#b4d5ed",'weight': 1})
+      var lapbas_ru = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+13*meter],'width': 9,'height': 8,'color': "black",'fillColor': "#b4d5ed",'weight': 1})
+      var lapbas_1 = this.insertRect({'map': mymap,'start_point': [-6.8915259-4*meter, 107.609975],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "1",'weight': 1}).bindPopup("Cicil")
+      var lapbas_2 = this.insertRect({'map': mymap,'start_point': [-6.8915259-2*meter, 107.609975],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "2",'weight': 1}).bindPopup("Jojonomics")
+      var lapbas_3 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+2*meter],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "3",'weight': 1}).bindPopup("Danacita")
+      var lapbas_4 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+4*meter],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "4",'weight': 1}).bindPopup("Halofina")
+      var lapbas_5 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+6*meter],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "5",'weight': 1}).bindPopup("Amartha")
 
-      var lapbas_6 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+14*meter],'width': 2,'height': 2,'color': "red",'divIcon': "6"}).bindPopup("Proofn")
-      var lapbas_7 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+16*meter],'width': 2,'height': 2,'color': "red",'divIcon': "7"}).bindPopup("Aimsis")
-      var lapbas_8 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+18*meter],'width': 2,'height': 2,'color': "red",'divIcon': "8"}).bindPopup("Squline")
-      var lapbas_9 = this.insertRect({'map': mymap,'start_point': [-6.8915259-2*meter, 107.609975+20*meter],'width': 2,'height': 2,'color': "red",'divIcon': "9"}).bindPopup("Noompang")
-      var lapbas_10 = this.insertRect({'map': mymap,'start_point': [-6.8915259-4*meter, 107.609975+20*meter],'width': 2,'height': 2,'color': "red",'divIcon': "10"}).bindPopup("Paragon")
+      var lapbas_6 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+14*meter],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "6",'weight': 1}).bindPopup("Proofn")
+      var lapbas_7 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+16*meter],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "7",'weight': 1}).bindPopup("Aimsis")
+      var lapbas_8 = this.insertRect({'map': mymap,'start_point': [-6.8915259, 107.609975+18*meter],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "8",'weight': 1}).bindPopup("Squline")
+      var lapbas_9 = this.insertRect({'map': mymap,'start_point': [-6.8915259-2*meter, 107.609975+20*meter],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "9",'weight': 1}).bindPopup("Noompang")
+      var lapbas_10 = this.insertRect({'map': mymap,'start_point': [-6.8915259-4*meter, 107.609975+20*meter],'width': 2,'height': 2,'color': "black",'fillColor': "#ee0136",'divIcon': "10",'weight': 1}).bindPopup("Paragon")
 
-      var lapbas_11 = this.insertRect({'map': mymap,'start_point': [-6.8915259-26*meter, 107.609975+0*meter],'width': 5,'height': 2,'color': "red",'divIcon': "11"}).bindPopup("Agate")
-      var lapbas_12 = this.insertRect({'map': mymap,'start_point': [-6.8915259-26*meter, 107.609975+5*meter],'width': 4,'height': 2,'color': "red",'divIcon': "12"}).bindPopup("Dicoding")
-      var lapbas_13 = this.insertRect({'map': mymap,'start_point': [-6.8915259-27*meter, 107.609975+12*meter],'width': 2,'height': 1,'color': "red",'divIcon': "13"}).bindPopup("Emago")
-      var lapbas_14 = this.insertRect({'map': mymap,'start_point': [-6.8915259-27*meter, 107.609975+14*meter],'width': 2,'height': 1,'color': "red",'divIcon': "14"}).bindPopup("Inkubator IT")
+      var lapbas_11 = this.insertRect({'map': mymap,'start_point': [-6.8915259-26*meter, 107.609975+0*meter],'width': 5,'height': 2,'color': "black",'divIcon': "11",'weight': 1,'fillColor': "#ee0136"}).bindPopup("Agate")
+      var lapbas_12 = this.insertRect({'map': mymap,'start_point': [-6.8915259-26*meter, 107.609975+5*meter],'width': 4,'height': 2,'color': "black",'divIcon': "12",'weight': 1,'fillColor': "#ee0136"}).bindPopup("Dicoding")
+      var lapbas_13 = this.insertRect({'map': mymap,'start_point': [-6.8915259-27*meter, 107.609975+12*meter],'width': 2,'height': 1,'color': "black",'divIcon': "13",'weight': 1,'fillColor': "#ee0136"}).bindPopup("Emago")
+      var lapbas_14 = this.insertRect({'map': mymap,'start_point': [-6.8915259-27*meter, 107.609975+14*meter],'width': 2,'height': 1,'color': "black",'divIcon': "14",'weight': 1,'fillColor': "#ee0136"}).bindPopup("Inkubator IT")
 
-      var lapbas_regis = this.insertRect({'map': mymap,'start_point': [-6.8915259-26*meter, 107.609975+20*meter],'width': 2,'height': 2,'color': "orange",'divIcon': "A"}).bindPopup("Inkubator IT")
-      var lapbas_panggung = this.insertRect({'map': mymap,'start_point': [-6.8915259-13*meter, 107.609975],'width': 3,'height': 8,'color': "white",'divIcon': "B"}).bindPopup("Inkubator IT")
-      var lapbas_stand = this.insertRect({'map': mymap,'start_point': [-6.8915259-15*meter, 107.609975+8*meter],'width': 6,'height': 3,'color': "white",'divIcon': "C"}).bindPopup("Inkubator IT")
-      var lapbas_photobox = this.insertRect({'map': mymap,'start_point': [-6.8915259-15*meter, 107.609975+19*meter],'width': 3,'height': 3,'color': "white",'divIcon': "D"}).bindPopup("Inkubator IT")
+      var lapbas_regis = this.insertRect({'map': mymap,'start_point': [-6.8915259-26*meter, 107.609975+20*meter],'width': 2,'height': 2,'color': "orange",'divIcon': "A",'weight': 1,'fillColor': "#ee8217"}).bindPopup("Registrasi")
+      var lapbas_panggung = this.insertRect({'map': mymap,'start_point': [-6.8915259-13*meter, 107.609975],'width': 3,'height': 8,'color': "black",'divIcon': "B",'fillColor': "#10a6a8",'weight': 1}).bindPopup("Panggung")
+      var lapbas_stand = this.insertRect({'map': mymap,'start_point': [-6.8915259-15*meter, 107.609975+8*meter],'width': 6,'height': 3,'color': "black",'divIcon': "C",'fillColor': "#10a6a8",'weight': 1}).bindPopup("Stand Arkav")
+      var lapbas_photobox = this.insertRect({'map': mymap,'start_point': [-6.8915259-15*meter, 107.609975+19*meter],'width': 3,'height': 3,'color': "black",'divIcon': "D",'fillColor': "#10a6a8",'weight': 1}).bindPopup("Photo Box")
     }
   }
 }
@@ -148,6 +172,17 @@ export default {
 
 h2 {
   color: white;
+}
+
+h5 {
+  color: white;
+  font-size: 14px;
+}
+
+h6 {
+  color: white;
+  font-size: 14px;
+  padding-left: 24px;
 }
 
 a {
@@ -182,5 +217,16 @@ body {
 .nav a {
   display: inline-block;
   padding: 4px;
+}
+
+.legend {
+  background-color: 'white';
+  line-height: 10px;
+  padding-top: 5px;
+  padding-left: 3px;
+  width: 123px;
+  color: #fff;
+  overflow: scroll;
+  height: 150px;
 }
 </style>
