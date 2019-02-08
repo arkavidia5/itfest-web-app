@@ -67,7 +67,7 @@
             :items="$store.getters.transaction"
           >
             <template slot="items" slot-scope="props">
-              <td align="center">{{ props.item.tenant }}</td>
+              <td align="center">{{ props.item.item }}</td>
               <td align="center" v-if="props.item.total_price > 0" class="tpointr">-{{props.item.total_price}}</td>
               <td align="center" v-else class="tpointg">+{{props.item.point}}</td>
               <td align="center">{{formatTime(props.item.created_at)}}</td>
